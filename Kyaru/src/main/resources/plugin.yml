@@ -1,0 +1,6 @@
+name: "mirai-Kyaru"
+author: "tyranitarx"
+version: "1.2"
+main: "com.github.tyranitarx.Kyaru.MyPluginBase"
+info: "凯露"
+
