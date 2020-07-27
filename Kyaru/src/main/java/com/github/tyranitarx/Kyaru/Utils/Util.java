@@ -1,4 +1,4 @@
-package com.github.tyranitarx.Kyaru;
+package com.github.tyranitarx.Kyaru.Utils;
 
 /**
  * @author tyranitar

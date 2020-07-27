@@ -1,6 +1,7 @@
-package com.github.tyranitarx.Kyaru;
+package com.github.tyranitarx.Kyaru.Listener;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.tyranitarx.Kyaru.Utils.HttpUtil;
 import net.mamoe.mirai.contact.Group;
 import net.mamoe.mirai.message.GroupMessageEvent;
 import net.mamoe.mirai.message.data.At;
@@ -31,7 +32,6 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
             "凯露爱你哦~",
             "你可以让凯露夸夸你或者别人，输入'夸我'，或者'夸@一位群友哦~'"
     };
-
 
     @Override
     public void accept(GroupMessageEvent event) {
@@ -76,7 +76,7 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
             }
         }
         if(message.contains("xe在直播吗")){
-            JSONObject object = RainbowFart.getxueeeeLiveStatus();
+            JSONObject object = HttpUtil.getxueeeeLiveStatus("169837");
             JSONObject data = (JSONObject) object.get("data");
             String status = data.getString("liveStatus");
             if(status.equals("0")) {
@@ -96,7 +96,7 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
             log.info(numString.split("]")[0]);
             Long atqq = Long.parseLong(numString.split("]")[0]);
             api.sendMessage(new At(
-                    api.getOrNull(atqq)).plus(RainbowFart.getChp()));
+                    api.getOrNull(atqq)).plus(HttpUtil.getChp()));
             return;
         }
 
@@ -108,7 +108,7 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
             log.info(numString.split("]")[0]);
             Long atqq = Long.parseLong(numString.split("]")[0]);
             api.sendMessage(new At(
-                    api.getOrNull(atqq)).plus(RainbowFart.getDuixian()));
+                    api.getOrNull(atqq)).plus(HttpUtil.getDuixian()));
             return;
         }
 
@@ -124,7 +124,7 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
         else {
         log.info("开始舔 2");
         api.sendMessage(new At(api.getOrNull(qq))
-                .plus(RainbowFart.getChp()));
+                .plus(HttpUtil.getChp()));
         }
     }
 }

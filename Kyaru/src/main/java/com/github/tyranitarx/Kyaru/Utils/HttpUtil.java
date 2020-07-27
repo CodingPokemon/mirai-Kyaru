@@ -1,4 +1,4 @@
-package com.github.tyranitarx.Kyaru;
+package com.github.tyranitarx.Kyaru.Utils;
 
 import net.dreamlu.mica.http.DomMapper;
 import net.dreamlu.mica.http.HttpRequest;
@@ -16,7 +16,7 @@ import lombok.experimental.UtilityClass;
  */
 
 @UtilityClass
-public class RainbowFart {
+public class HttpUtil {
     /**
      * 获取彩虹屁
      *
@@ -59,8 +59,8 @@ public class RainbowFart {
                 .asString();
     }
 
-    public static JSONObject getxueeeeLiveStatus(){
-        String url= "http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld?mid=169837";
+    public static JSONObject getxueeeeLiveStatus(String bilibiliuid){
+        String url= "http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld?mid="+bilibiliuid;
         String body = HttpRequest.get(url).execute().asString();
         JSONObject object=JSON.parseObject(body);
         JSONObject data = (JSONObject) object.get("data");
