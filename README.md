@@ -6,7 +6,7 @@
 - [ ] ~~色图~~
 - [ ] 宝可梦
 
- ###直播功能配置config.yml
+ ### 直播功能配置config.yml
  在目录plugins/mirai-Kyaru下新建config.yml
  具体配置如下:
  ```yml
