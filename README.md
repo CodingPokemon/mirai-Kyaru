@@ -7,7 +7,7 @@
 - [x] ~~色图~~
 - [ ] 宝可梦
 
- 
+ ### bilibili主播直播提醒功能
  在目录plugins/mirai-Kyaru下新建config.yml
  具体配置如下:
  ```yml
