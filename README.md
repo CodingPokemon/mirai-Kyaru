@@ -17,5 +17,5 @@ livername: "凯露" //要提醒的主播名称
 bilibiliuid: "297821" //主播bilibiliuid
 groupnum: "10158005" //希望在哪个QQ群提醒
  ```
- ### ~~色图API
- 色图API使用了https://api.lolicon.app/#/相关API~~
+ ### ~~色图API~~
+ ~~色图API使用了https://api.lolicon.app/#/相关API~~
