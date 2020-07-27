@@ -69,7 +69,7 @@ public class HttpUtil {
     }
 
     public static JSONObject getSeTu(){
-        String url= "https://api.lolicon.app/setu/?apikey=165869815f1ecda7c45c44";
+        String url= "https://api.lolicon.app/setu/?apikey=165869815f1ecda7c45c44&keyword=凯露";
         String body = HttpRequest.get(url).execute().asString();
         JSONObject object=JSON.parseObject(body);
         return object;
