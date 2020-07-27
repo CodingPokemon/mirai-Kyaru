@@ -2,8 +2,8 @@
 凯露Bot
 基于MIRAI和群友需求的BOT 功能待完善
 
-- [x]bilibili直播通知功能
-- [ ]宝可梦
+- [x] bilibili直播通知功能
+- [ ] 宝可梦
 
  ###直播功能配置config.yml
  在目录plugins/mirai-Kyaru下新建config.yml
