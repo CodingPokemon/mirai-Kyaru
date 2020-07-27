@@ -2,6 +2,7 @@ package com.github.tyranitarx.Kyaru;
 
 import net.mamoe.mirai.console.plugins.PluginBase;
 import net.mamoe.mirai.message.GroupMessage;
+import net.mamoe.mirai.message.GroupMessageEvent;
 
 public class MyPluginBase extends PluginBase {
 
@@ -13,7 +14,8 @@ public class MyPluginBase extends PluginBase {
     @Override
     public void onEnable() {
         getLogger().info("凯露 Plugin loaded!");
-        getEventListener().subscribeAlways(GroupMessage.class, new TotalListener());
+        getEventListener().subscribeAlways(GroupMessageEvent.class, new TotalListener());
     }
+
 
 }

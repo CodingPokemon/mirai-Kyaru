@@ -2,7 +2,7 @@ package com.github.tyranitarx.Kyaru;
 
 import com.alibaba.fastjson.JSONObject;
 import net.mamoe.mirai.contact.Group;
-import net.mamoe.mirai.message.GroupMessage;
+import net.mamoe.mirai.message.GroupMessageEvent;
 import net.mamoe.mirai.message.data.At;
 import net.mamoe.mirai.message.data.Image;
 import net.mamoe.mirai.message.data.MessageUtils;
@@ -19,7 +19,7 @@ import java.util.function.Consumer;
  * @email tyranitarx@163.com
  * @date 2020-07-23 18:23
  */
-public class TotalListener implements Consumer<GroupMessage> {
+public class TotalListener implements Consumer<GroupMessageEvent> {
 
     public static MiraiLogger log = null;
 
@@ -34,7 +34,7 @@ public class TotalListener implements Consumer<GroupMessage> {
 
 
     @Override
-    public void accept(GroupMessage event) {
+    public void accept(GroupMessageEvent event) {
         Group group = event.getGroup();
         String message = event.getMessage().toString();
 
