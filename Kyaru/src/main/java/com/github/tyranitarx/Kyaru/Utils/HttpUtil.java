@@ -68,6 +68,13 @@ public class HttpUtil {
         return object;
     }
 
+    public static JSONObject getSeTu(){
+        String url= "https://api.lolicon.app/setu/?apikey=165869815f1ecda7c45c44";
+        String body = HttpRequest.get(url).execute().asString();
+        JSONObject object=JSON.parseObject(body);
+        return object;
+    }
+
     /**
      * 获取 马丁路德骂人生成器，收集了他作品里所有的脏话，连出处都有…
      *

@@ -1,5 +1,6 @@
 package com.github.tyranitarx.Kyaru.Listener;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.tyranitarx.Kyaru.Utils.HttpUtil;
 import net.mamoe.mirai.contact.Group;
@@ -67,15 +68,25 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
         String imageId3 =image3.getImageId();
         String[] imgs= {imageId1,imageId2,imageId3};
         boolean isCMD = false;
-        if(message.contains("mirai:at:")&&message.contains("夸"))
-            isCMD = true;
-        for (String s : CMD) {
-            if (message.contains(s)) {
-                isCMD = true;
-                break;
+
+        if(message.contains("色图")&&message.contains("mirai:at:3044668489")){
+            JSONObject object=HttpUtil.getSeTu();
+            log.info(object.toJSONString());
+            JSONArray datas =(JSONArray) object.get("data");
+            JSONObject data =(JSONObject)datas.get(0);
+            Image setu =null;
+            try {
+                log.info(data.getString("url"));
+                log.info("https://www.pixivdl.net/"+data.getString("url").substring(20));
+                URL url=new URL("https://www.pixivdl.net/"+data.getString("url").substring(20));
+                setu = api.uploadImage(url);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
             }
+            api.sendMessage(MessageUtils.newImage(setu.getImageId()));
+            api.sendMessage("神秘连接=>"+data.getString("url"));
         }
-        if(message.contains("xe在直播吗")){
+        else if(message.contains("xe在直播吗")){
             JSONObject object = HttpUtil.getxueeeeLiveStatus("169837");
             JSONObject data = (JSONObject) object.get("data");
             String status = data.getString("liveStatus");
@@ -88,7 +99,7 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
             }
             return;
         }
-        if(message.contains("mirai:at:")&&message.contains("夸")&&!message.contains("骂")){
+        else if(message.contains("mirai:at:")&&message.contains("夸")&&!message.contains("骂")){
             log.info("开始舔别人");
             log.info("message");
             String numString = message.split("mirai:at:")[1];
@@ -100,7 +111,7 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
             return;
         }
 
-        if(message.contains("mirai:at:")&&message.contains("骂")&&!message.contains("夸")){
+        else if(message.contains("mirai:at:")&&message.contains("骂")&&!message.contains("夸")){
             log.info("开始骂别人");
             log.info("message");
             String numString = message.split("mirai:at:")[1];
@@ -112,13 +123,13 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
             return;
         }
 
-        if(message.contains("mirai:at:3044668489")){
+        else if(message.contains("mirai:at:3044668489")){
             Random random=new Random();
             api.sendMessage(defaultAt[random.nextInt(3)]);
             api.sendMessage(MessageUtils.newImage(imgs[random.nextInt(3)]));
             return;
         }
-        if (!isCMD) {
+        else if (!isCMD) {
             return;
         }
         else {
