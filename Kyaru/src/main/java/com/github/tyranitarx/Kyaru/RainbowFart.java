@@ -17,7 +17,6 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class RainbowFart {
-
     /**
      * 获取彩虹屁
      *

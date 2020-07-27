@@ -13,8 +13,7 @@ public class MyPluginBase extends PluginBase {
     @Override
     public void onEnable() {
         getLogger().info("凯露 Plugin loaded!");
-        getEventListener().subscribeAlways(GroupMessage.class, new MyListener());
-
+        getEventListener().subscribeAlways(GroupMessage.class, new TotalListener());
     }
 
 }

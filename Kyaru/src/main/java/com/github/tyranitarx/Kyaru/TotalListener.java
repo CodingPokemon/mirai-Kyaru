@@ -19,7 +19,7 @@ import java.util.function.Consumer;
  * @email tyranitarx@163.com
  * @date 2020-07-23 18:23
  */
-public class MyListener implements Consumer<GroupMessage> {
+public class TotalListener implements Consumer<GroupMessage> {
 
     public static MiraiLogger log = null;
 
