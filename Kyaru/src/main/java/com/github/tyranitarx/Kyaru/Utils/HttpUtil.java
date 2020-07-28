@@ -59,6 +59,12 @@ public class HttpUtil {
                 .asString();
     }
 
+    /**
+     * 获取bilibili直播间数据
+     * *bilibiliuid
+     *
+     * @return
+     */
     public static JSONObject getxueeeeLiveStatus(String bilibiliuid){
         String url= "http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld?mid="+bilibiliuid;
         String body = HttpRequest.get(url).execute().asString();
@@ -68,6 +74,10 @@ public class HttpUtil {
         return object;
     }
 
+    /**
+     * 获取setu
+     * @return
+     */
     public static JSONObject getSeTu(){
         String url= "https://api.lolicon.app/setu/?apikey=165869815f1ecda7c45c44&keyword=凯露";
         String body = HttpRequest.get(url).execute().asString();

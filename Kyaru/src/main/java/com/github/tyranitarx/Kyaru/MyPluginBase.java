@@ -29,7 +29,7 @@ public class MyPluginBase extends PluginBase {
         String password = setting.getString("password");
         String livername = setting.getString("livername");
         String groupnum = setting.getString("groupnum");
-        threadLocal.set(new Integer(0));
+        threadLocal.set(0);
         Bot bot = BotFactoryJvm.newBot(Long.parseLong(qqnumber),password);
         bot.login();
         getLogger().info("凯露 Plugin loaded!");

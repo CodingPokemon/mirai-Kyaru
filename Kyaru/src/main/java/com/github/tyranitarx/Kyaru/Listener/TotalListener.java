@@ -25,9 +25,6 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
 
     public static MiraiLogger log = null;
 
-    public static final String[] CMD = {
-            "彩虹屁", "夸我","夸阿蝎","夸鬼护"
-    };
     public static final String[] defaultAt={
             "叫凯露有什么事呢",
             "凯露爱你哦~",
@@ -97,7 +94,6 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
             else{
                 api.sendMessage("xe正在直播"+data.get("title"));
             }
-            return;
         }
         else if(message.contains("mirai:at:")&&message.contains("夸")&&!message.contains("骂")){
             log.info("开始舔别人");
@@ -108,7 +104,6 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
             Long atqq = Long.parseLong(numString.split("]")[0]);
             api.sendMessage(new At(
                     api.getOrNull(atqq)).plus(HttpUtil.getChp()));
-            return;
         }
 
         else if(message.contains("mirai:at:")&&message.contains("骂")&&!message.contains("夸")){
@@ -117,25 +112,15 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
             String numString = message.split("mirai:at:")[1];
             log.info(message.split("mirai:at:")[1]);
             log.info(numString.split("]")[0]);
-            Long atqq = Long.parseLong(numString.split("]")[0]);
+            long atqq = Long.parseLong(numString.split("]")[0]);
             api.sendMessage(new At(
                     api.getOrNull(atqq)).plus(HttpUtil.getDuixian()));
-            return;
         }
 
         else if(message.contains("mirai:at:3044668489")){
             Random random=new Random();
             api.sendMessage(defaultAt[random.nextInt(3)]);
             api.sendMessage(MessageUtils.newImage(imgs[random.nextInt(3)]));
-            return;
-        }
-        else if (!isCMD) {
-            return;
-        }
-        else {
-        log.info("开始舔 2");
-        api.sendMessage(new At(api.getOrNull(qq))
-                .plus(HttpUtil.getChp()));
         }
     }
 }
