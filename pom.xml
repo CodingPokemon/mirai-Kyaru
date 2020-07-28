@@ -17,84 +17,78 @@
     <description>mirai-Kyaru</description>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <encoding>UTF-8</encoding>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <mainClass>com.github.tyranitarx.Kyaru.MyPluginBase</mainClass>
-
-        <lombok.version>1.18.4</lombok.version>
         <mica.http.version>1.2.2</mica.http.version>
         <commons.lang3.version>3.9</commons.lang3.version>
-        <fastjson.version>1.2.60</fastjson.version>
 
+        <mirai-core.version>1.1.3</mirai-core.version>
+        <mirai-console.version>0.5.2</mirai-console.version>
+
+        <lombok.version>1.18.4</lombok.version>
+        <gson.version>2.8.6</gson.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <!--https://bintray.com/him188moe/mirai/mirai-core-->
+            <dependency>
+                <groupId>net.mamoe</groupId>
+                <artifactId>mirai-core</artifactId>
+                <version>${mirai-core.version}</version>
+            </dependency>
+
+            <!--https://bintray.com/him188moe/mirai/mirai-core-->
+            <dependency>
+                <groupId>net.mamoe</groupId>
+                <artifactId>mirai-core-qqandroid</artifactId>
+                <version>${mirai-core.version}</version>
+            </dependency>
+
+            <!--https://bintray.com/him188moe/mirai/mirai-console-->
+            <dependency>
+                <groupId>net.mamoe</groupId>
+                <artifactId>mirai-console</artifactId>
+                <version>${mirai-console.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.dreamlu</groupId>
+                <artifactId>mica-http</artifactId>
+                <version>${mica.http.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>spring-boot-starter-json</artifactId>
+                        <groupId>org.springframework.boot</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang3.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.31</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
-
-        <!--https://bintray.com/him188moe/mirai/mirai-console-->
-        <dependency>
-            <groupId>net.mamoe</groupId>
-            <artifactId>mirai-console</artifactId>
-            <version>0.5.2</version>
-            <optional>true</optional>
-            <scope>provided</scope>
-        </dependency>
-
-
-
-        <!--https://bintray.com/him188moe/mirai/mirai-core-->
-        <dependency>
-            <groupId>net.mamoe</groupId>
-            <artifactId>mirai-core</artifactId>
-            <version>1.1.3</version>
-            <optional>true</optional>
-            <scope>provided</scope>
-        </dependency>
-
-        <!--https://bintray.com/him188moe/mirai/mirai-core-->
-        <dependency>
-            <groupId>net.mamoe</groupId>
-            <artifactId>mirai-core-qqandroid</artifactId>
-            <version>1.1.3</version>
-            <optional>true</optional>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>net.dreamlu</groupId>
-            <artifactId>mica-http</artifactId>
-            <version>${mica.http.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-boot-starter-json</artifactId>
-                    <groupId>org.springframework.boot</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.6</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons.lang3.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
-            <optional>true</optional>
-        </dependency>
-
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.data</groupId>-->
 <!--            <artifactId>spring-data-jpa</artifactId>-->
@@ -121,114 +115,7 @@
 <!--            <artifactId>c3p0</artifactId>-->
 <!--            <version>0.9.5.2</version>-->
 <!--        </dependency>-->
-
     </dependencies>
-
-    <build>
-        <plugins>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass></mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
-                        <phase>package</phase> <!-- 指定在打包节点执行jar包合并操作 -->
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <executions>
-                    <!-- Run shade goal on package phase -->
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <filters>
-                                <filter>
-                                    <!-- Do not copy the signatures in the META-INF folder.
-                                    Otherwise, this might cause SecurityExceptions when using the JAR. -->
-                                    <artifact>*:*</artifact>
-                                    <excludes>
-                                        <exclude>META-INF/*.SF</exclude>
-                                        <exclude>META-INF/*.DSA</exclude>
-                                        <exclude>META-INF/*.RSA</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
-
-                            <transformers>
-                                <transformer
-                                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>${mainClass}</mainClass>
-                                </transformer>
-                            </transformers>
-
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>${mainClass}</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
     <repositories>
         <repository>
