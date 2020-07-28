@@ -4,6 +4,8 @@ import net.dreamlu.mica.http.DomMapper;
 import net.dreamlu.mica.http.HttpRequest;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import net.mamoe.mirai.utils.MiraiLogger;
+import net.mamoe.mirai.utils.Utils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
@@ -17,6 +19,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class HttpUtil {
+
     /**
      * 获取彩虹屁
      *
@@ -67,6 +70,7 @@ public class HttpUtil {
      */
     public static JSONObject getxueeeeLiveStatus(String bilibiliuid){
         String url= "http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld?mid="+bilibiliuid;
+
         String body = HttpRequest.get(url).execute().asString();
         JSONObject object=JSON.parseObject(body);
         JSONObject data = (JSONObject) object.get("data");
@@ -78,8 +82,10 @@ public class HttpUtil {
      * 获取setu
      * @return
      */
-    public static JSONObject getSeTu(){
-        String url= "https://api.lolicon.app/setu/?apikey=165869815f1ecda7c45c44&keyword=凯露";
+    public static JSONObject getSeTu(String keyword){
+        MiraiLogger log = Utils.getDefaultLogger().invoke("util");
+        String url= "https://api.lolicon.app/setu/?apikey=165869815f1ecda7c45c44&keyword="+keyword;
+        log.info(url);
         String body = HttpRequest.get(url).execute().asString();
         JSONObject object=JSON.parseObject(body);
         return object;

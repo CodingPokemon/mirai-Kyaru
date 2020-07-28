@@ -7,11 +7,12 @@
     <groupId>com.github.tyranitarx</groupId>
     <artifactId>mirai-Kyaru</artifactId>
     <packaging>pom</packaging>
-    <version>1.2</version>
+    <version>1.2.2</version>
 
     <modules>
         <module>Kyaru</module>
     </modules>
+
     <name>mirai-Kyaru</name>
     <description>mirai-Kyaru</description>
 

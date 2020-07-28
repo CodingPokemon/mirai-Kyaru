@@ -33,19 +33,16 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
 
     @Override
     public void accept(GroupMessageEvent event) {
+        log = event.getBot().getLogger();
         Group group = event.getGroup();
         String message = event.getMessage().toString();
-
         long groupId = group.getId();
-
         long qq = event.getSender().getId();
-        log = event.getBot().getLogger();
-
-        stepCmd(group, groupId, qq, message);
+        log.info(event.getMessage()+"");
+        dealMessage(group, groupId, qq, message);
     }
 
-    private void stepCmd(Group api, long groupId, long qq, String message) {
-        Thread thread=new Thread();
+    private void dealMessage(Group api, long groupId, long qq, String message) {
         Image image=null;
         Image image2=null;
         Image image3=null;
@@ -67,14 +64,17 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
         boolean isCMD = false;
 
         if(message.contains("色图")&&message.contains("mirai:at:3044668489")){
-            JSONObject object=HttpUtil.getSeTu();
-            log.info(object.toJSONString());
+            String reg = "\\[[^\\u4e00-\\u9fa5]*\\]";
+            String x =message.replaceAll(reg,"");
+            String keword[]=x.split("色图");
+            JSONObject object=HttpUtil.getSeTu(keword[0].trim());
+            if(object.getString("code").equals("404")){
+                api.sendMessage("没有这样的色图呢");
+            }else {
             JSONArray datas =(JSONArray) object.get("data");
             JSONObject data =(JSONObject)datas.get(0);
             Image setu =null;
             try {
-                log.info(data.getString("url"));
-                log.info("https://www.pixivdl.net/"+data.getString("url").substring(20));
                 URL url=new URL("https://www.pixivdl.net/"+data.getString("url").substring(20));
                 setu = api.uploadImage(url);
             } catch (MalformedURLException e) {
@@ -82,6 +82,7 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
             }
             api.sendMessage(MessageUtils.newImage(setu.getImageId()));
             api.sendMessage("神秘连接=>"+data.getString("url"));
+            }
         }
         else if(message.contains("xe在直播吗")){
             JSONObject object = HttpUtil.getxueeeeLiveStatus("169837");
@@ -96,22 +97,14 @@ public class TotalListener implements Consumer<GroupMessageEvent> {
             }
         }
         else if(message.contains("mirai:at:")&&message.contains("夸")&&!message.contains("骂")){
-            log.info("开始舔别人");
-            log.info("message");
             String numString = message.split("mirai:at:")[1];
-            log.info(message.split("mirai:at:")[1]);
-            log.info(numString.split("]")[0]);
             Long atqq = Long.parseLong(numString.split("]")[0]);
             api.sendMessage(new At(
                     api.getOrNull(atqq)).plus(HttpUtil.getChp()));
         }
 
         else if(message.contains("mirai:at:")&&message.contains("骂")&&!message.contains("夸")){
-            log.info("开始骂别人");
-            log.info("message");
             String numString = message.split("mirai:at:")[1];
-            log.info(message.split("mirai:at:")[1]);
-            log.info(numString.split("]")[0]);
             long atqq = Long.parseLong(numString.split("]")[0]);
             api.sendMessage(new At(
                     api.getOrNull(atqq)).plus(HttpUtil.getDuixian()));
