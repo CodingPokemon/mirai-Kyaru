@@ -14,8 +14,8 @@ import java.net.URL
 
 suspend fun main() {
     val logger = DefaultLogger("main")
-    val qqId = 3044668489L//Bot的QQ号，需为Long类型，在结尾处添加大写L
-    val password = "a3447664"//Bot的密码
+    val qqId = 1234567L//Bot的QQ号，需为Long类型，在结尾处添加大写L
+    val password = ""//Bot的密码
     val miraiBot = Bot(qqId, password).alsoLogin()//新建Bot并登录
     miraiBot.subscribeGroupMessages {
         contains("123") reply "你好"

@@ -31,6 +31,8 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'com.alibaba:fastjson:1.1.71.android'
     compile("net.dreamlu:mica-http:2.0.4-GA")
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8"
+
 }
 
 compileKotlin {
@@ -43,7 +45,7 @@ compileTestKotlin {
 shadowJar {
     // 生成包的命名规则： baseName-version-classifier.jar
     manifest {
-        archiveVersion = '1.0b'
+        archiveVersion = '1.0.1b'
         attributes(
                 'Main-Class': 'com.github.CodingPokemon.Kayru.MainPluginKt'//入口点
         )
