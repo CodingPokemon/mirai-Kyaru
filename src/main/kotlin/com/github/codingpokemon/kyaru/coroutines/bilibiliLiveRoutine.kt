@@ -1,12 +1,11 @@
-package com.github.CodingPokemon.Kayru.Coroutines
+package com.github.codingpokemon.kyaru.coroutines
 
 import com.alibaba.fastjson.JSONObject
-import com.github.CodingPokemon.Kayru.Utils.HttpUtil
+import com.github.codingpokemon.kyaru.utils.HttpUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import net.mamoe.mirai.Bot
 
 suspend fun liveroutine(bilibiliuid:String){
     withContext(Dispatchers.IO){

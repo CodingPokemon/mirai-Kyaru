@@ -1,9 +1,8 @@
-package com.github.CodingPokemon.Kayru.Utils
+package com.github.codingpokemon.kyaru.utils
 
 import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.JSONObject
 import net.dreamlu.mica.http.HttpRequest
-import net.mamoe.mirai.utils.DefaultLogger
 
 class HttpUtil() {
     companion object {
