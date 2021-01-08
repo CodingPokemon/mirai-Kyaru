@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class KayruBotMain {
     public static void main(String[] args) {
         ThreadLocal<Integer> threadLocal = new InheritableThreadLocal<Integer>();
-        Bot bot = BotFactory.INSTANCE.newBot(3479193691l, "z4131240", new BotConfiguration() {{
+        Bot bot = BotFactory.INSTANCE.newBot(123455, "123456", new BotConfiguration() {{
             fileBasedDeviceInfo("./device.json"); // 使用 device.json 存储设备信息
             setProtocol(MiraiProtocol.ANDROID_PAD);
         }});

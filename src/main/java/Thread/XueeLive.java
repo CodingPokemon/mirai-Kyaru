@@ -1,6 +1,6 @@
 package Thread;
 
-import HttpUtils.HttpSender;
+import Utils.HttpUtils;
 import com.alibaba.fastjson.JSONObject;
 import net.mamoe.mirai.Bot;
 import net.mamoe.mirai.contact.Group;
@@ -9,10 +9,10 @@ import java.util.NoSuchElementException;
 
 public class XueeLive implements Runnable{
     public ThreadLocal<Integer> threadLocal;
-    private String livername;
-    private String bilibiliuid;
-    private String qqnumber;
-    private String groupnum;
+    private final String livername;
+    private final String bilibiliuid;
+    private final String qqnumber;
+    private final String groupnum;
 
     public XueeLive(ThreadLocal<Integer> threadLocal, String livername, String bilibiliuid, String qqnumber, String groupnum) {
         this.threadLocal = threadLocal;
@@ -31,11 +31,13 @@ public class XueeLive implements Runnable{
             e.printStackTrace();
         }
         Group group = bot.getGroup(Long.parseLong(groupnum));
-        JSONObject object = HttpSender.doGet("http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld?mid="+bilibiliuid);
+        JSONObject object = HttpUtils.doGet("http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld?mid="+bilibiliuid);
         JSONObject data = (JSONObject) object.get("data");
         String status = data.getString("liveStatus");
+        String link = data.getString("link");
         if (status.equals("1")&&threadLocal.get().equals(0)) {
             group.sendMessage(livername+"正在直播“" + data.get("title")+"”");
+            group.sendMessage("赶紧点击"+link.substring(0,link.indexOf('?'))+"观看吧！");
             threadLocal.set(1);
         }else if(!status.equals("1")){
             threadLocal.set(0);
