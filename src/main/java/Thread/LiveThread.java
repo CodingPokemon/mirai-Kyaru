@@ -7,14 +7,14 @@ import net.mamoe.mirai.contact.Group;
 
 import java.util.NoSuchElementException;
 
-public class XueeLive implements Runnable{
+public class LiveThread implements Runnable{
     public ThreadLocal<Integer> threadLocal;
     private final String livername;
     private final String bilibiliuid;
     private final String qqnumber;
     private final String groupnum;
 
-    public XueeLive(ThreadLocal<Integer> threadLocal, String livername, String bilibiliuid, String qqnumber, String groupnum) {
+    public LiveThread(ThreadLocal<Integer> threadLocal, String livername, String bilibiliuid, String qqnumber, String groupnum) {
         this.threadLocal = threadLocal;
         this.livername = livername;
         this.bilibiliuid = bilibiliuid;
@@ -31,7 +31,7 @@ public class XueeLive implements Runnable{
             e.printStackTrace();
         }
         Group group = bot.getGroup(Long.parseLong(groupnum));
-        JSONObject object = HttpUtils.doGet("http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld?mid="+bilibiliuid);
+        JSONObject object = JSONObject.parseObject(HttpUtils.doGet("http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld?mid="+bilibiliuid));
         JSONObject data = (JSONObject) object.get("data");
         String status = data.getString("liveStatus");
         String link = data.getString("link");
